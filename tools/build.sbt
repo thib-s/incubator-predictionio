@@ -12,9 +12,7 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import AssemblyKeys._
-
-assemblySettings
+import sbtassembly.AssemblyPlugin.autoImport._
 
 name := "tools"
 
@@ -45,6 +43,10 @@ excludedJars in assembly <<= (fullClasspath in assembly) map { cp =>
     case _ => false
   }}
 }
+
+assemblyShadeRules in assembly := Seq(
+  ShadeRule.rename("org.joda.time.base.**" -> "shadeio.@1").inLibrary("joda-time" % "joda-time" % "2.8.2").inProject
+)
 
 // skip test in assembly
 test in assembly := {}

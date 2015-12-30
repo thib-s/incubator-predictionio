@@ -11,7 +11,7 @@
 OS=`uname`
 PIO_VERSION=0.9.5
 SPARK_VERSION=1.5.1
-ELASTICSEARCH_VERSION=1.4.4
+ELASTICSEARCH_VERSION=2.1.1
 HBASE_VERSION=1.0.0
 POSTGRES_VERSION=9.4-1204.jdbc41
 MYSQL_VERSION=5.1.37
@@ -371,7 +371,7 @@ case $source_setup in
     fi
     if [[ ! -e elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz ]]; then
       echo "Downloading Elasticsearch..."
-      curl -O https://download.elasticsearch.org/elasticsearch/elasticsearch/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
+      curl -O https://download.elasticsearch.org/elasticsearch/release/org/elasticsearch/distribution/tar/elasticsearch/${ELASTICSEARCH_VERSION}/elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
     fi
     tar zxf elasticsearch-${ELASTICSEARCH_VERSION}.tar.gz
     rm -rf ${elasticsearch_dir}
