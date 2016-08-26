@@ -276,20 +276,27 @@ echo "JAVA_HOME is now set to: $JAVA_HOME"
 # PredictionIO
 echo -e "\033[1;36mStarting PredictionIO setup in:\033[0m $pio_dir"
 
-cd ${TEMP_DIR}
+#dirty assuming you are running the script in the bin directory
+cd ..
 
 if [[ ! -e ${PIO_FILE} ]]; then
   echo "Downloading PredictionIO..."
-  curl -L https://codeload.github.com/apache/incubator-predictionio/tar.gz/develop > incubator-predictionio-develop.tar.gz 
 
-  tar zxf incubator-predictionio-develop.tar.gz 
+  #
+  #very dirty, but working
+  #
 
-  mv incubator-predictionio-develop PredictionIO-${PIO_VERSION}
+  #curl -L https://codeload.github.com/apache/incubator-predictionio/tar.gz/develop > incubator-predictionio-develop.tar.gz 
 
-  sh PredictionIO-${PIO_VERSION}/make-distribution.sh
-  cp PredictionIO-${PIO_VERSION}/${PIO_FILE} ${TEMP_DIR}
-  rm -r PredictionIO-${PIO_VERSION}
+  #tar zxf incubator-predictionio-develop.tar.gz 
+
+  #mv incubator-predictionio-develop PredictionIO-${PIO_VERSION}
+
+  sh make-distribution.sh
+  #rm -r PredictionIO-${PIO_VERSION}
 fi
+cp ${PIO_FILE} ${TEMP_DIR}
+cd ${TEMP_DIR}
 
 tar zxf ${PIO_FILE}
 rm -rf ${pio_dir}
