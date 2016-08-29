@@ -21,7 +21,7 @@ OS=`uname`
 PIO_VERSION=0.10.0-SNAPSHOT
 SPARK_VERSION=1.6.2
 # Looks like support for Elasticsearch 2.0 will require 2.0 so deferring
-ELASTICSEARCH_VERSION=1.7.5
+ELASTICSEARCH_VERSION=2.1.1
 HBASE_VERSION=1.2.2
 POSTGRES_VERSION=9.4-1204.jdbc41
 MYSQL_VERSION=5.1.37
@@ -401,7 +401,7 @@ case $source_setup in
     ;;
   "$ES_HB")
     # Elasticsearch
-    installES
+
     echo "Updating: $pio_dir/conf/pio-env.sh"
     ${SED_CMD} "s|PIO_STORAGE_REPOSITORIES_METADATA_SOURCE=PGSQL|PIO_STORAGE_REPOSITORIES_METADATA_SOURCE=ELASTICSEARCH|" ${pio_dir}/conf/pio-env.sh
     ${SED_CMD} "s|PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE=PGSQL|PIO_STORAGE_REPOSITORIES_MODELDATA_SOURCE=LOCALFS|" ${pio_dir}/conf/pio-env.sh
